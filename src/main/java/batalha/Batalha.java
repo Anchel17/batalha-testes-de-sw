@@ -54,7 +54,11 @@ public class Batalha {
 		}
 		else {
 			double modificadorAtaque = 0.8 + (geradorRandomico.nextDouble() * (0.4));
-			boolean eGolpeCritico = geradorRandomico.nextInt(1, 101) <= 10;
+			int randomNumber = geradorRandomico.nextInt(101);
+			if(randomNumber == 0) {
+				randomNumber = 1;
+			}
+			boolean eGolpeCritico = randomNumber <= 10;
 			
 			atacante.atacar(defensor, modificadorAtaque, eGolpeCritico);
 		}
