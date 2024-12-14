@@ -37,7 +37,9 @@ public abstract class Personagem {
 	}
 
 	final void checarValorMinimo(Integer atributo) {
-		// TODO
+	    if(atributo < 3) {
+	        throw new IllegalArgumentException("Atributo não pode ter valor menor do que 3.");
+	    }
 	}
 
 	final void checarTotal() {
@@ -53,19 +55,29 @@ public abstract class Personagem {
 	}
 
 	int calcularDanoInfringindo(int danoBase, int defesa, boolean eGolpeCritico) {
-		// TODO
-		return -1;
+	    //REVISEM ISSO AQUI COM BASE NO DOCUMENTO
+	    Long danoInfringido = (long) (danoBase + this.getAtaque() - defesa);
+	    
+	    if(eGolpeCritico) {
+	        danoInfringido = Math.round(danoInfringido * 1.5);
+	    }
+	    
+		return danoInfringido.intValue();
 	}
 
 	private void receberDano(int danoInfringido) {
-		// TODO
+	    //REVISEM
+		this.setVida(this.getVida() - danoInfringido);
 	}
 
 	public int calcularDanoBase(double modificadorAtaque) {
-		// TODO Considere que o modificadorAtaque é um valor entre [0.8 e 1.2[
+	    // REVISEM ISSO AQUI COM BASE NO DOCUMENTO
+		//      Considere que o modificadorAtaque é um valor entre [0.8 e 1.2[
 		// 		Ele serve de base pra calcular o danoBase
 		//		Recebe como parâmetro para isolar melhor o método, facilitando seu teste
-		return -1;
+	    Long danoBase =  Math.round(this.getAtaque() * (1 + modificadorAtaque));
+	    
+		return danoBase.intValue();
 	}
 	
 	public Integer getAtaque() {

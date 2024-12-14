@@ -8,6 +8,34 @@ public class Assassino extends Personagem {
 
 	@Override
 	final void checarRegraDeClasse() {
-		// TODO Auto-generated method stub
+	    if(isAtaqueMenorQueVelocidade() || isVelocidadeMenorQueAtaque()
+	    || isResistenciaMaiorQueAtaque() || isResistenciaMaiorQueVelocidade()
+	    || isDefesaMaiorQueAtaque() || isDefesaMaiorQueVelocidade()) {
+	        throw new IllegalArgumentException("Parâmetros inválidos para criar um Assassino");
+	    }
+	}
+	
+	private Boolean isAtaqueMenorQueVelocidade() {
+	    return this.getAtaque() < this.getVelocidade();
+	}
+	
+	private Boolean isVelocidadeMenorQueAtaque() {
+	    return this.getVelocidade() < this.getAtaque();
+	}
+	
+	private Boolean isResistenciaMaiorQueAtaque() {
+	    return this.getResistencia() > this.getAtaque();
+	}
+	
+	private Boolean isResistenciaMaiorQueVelocidade() {
+	    return this.getResistencia() > this.getVelocidade();
+	}
+	
+	private Boolean isDefesaMaiorQueAtaque() {
+	    return this.getDefesa() > this.getAtaque();
+	}
+	
+	private Boolean isDefesaMaiorQueVelocidade() {
+	    return this.getDefesa() > this.getVelocidade();
 	}
 }
