@@ -46,4 +46,8 @@ public class PersonagemBuilder {
 		return new Assassino(7, 3, 7, 3);
 	}
 
+	public Guerreiro umGuerreiroValido() {
+		return new Guerreiro(7, 3, 3, 7);
+	}
+
 }
