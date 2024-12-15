@@ -46,19 +46,18 @@ public class Batalha {
 
 	private void realizarAtaque(Personagem atacante, Personagem defensor) {
 		int chanceEvasao = calcularChanceEvasao(atacante, defensor);
-		int randomicoEvasao = geradorRandomico.nextInt(100);
-		
+		int randomicoEvasao = geradorRandomico.nextInt(101);
 		
 		if(this.evadiu(chanceEvasao, randomicoEvasao)) {
-			// Informar que evadiu
+			System.out.println(this.getTipoDePersonagem(defensor) + " se evadiu do ataque");
 		}
 		else {
 			double modificadorAtaque = 0.8 + (geradorRandomico.nextDouble() * (0.4));
-			int randomNumber = geradorRandomico.nextInt(101);
-			if(randomNumber == 0) {
-				randomNumber = 1;
+			int randomicoGolpeCritico = geradorRandomico.nextInt(101);
+			if(randomicoGolpeCritico == 0) {
+				randomicoGolpeCritico = 1;
 			}
-			boolean eGolpeCritico = randomNumber <= 10;
+			boolean eGolpeCritico = randomicoGolpeCritico <= 10;
 			
 			atacante.atacar(defensor, modificadorAtaque, eGolpeCritico);
 		}
@@ -79,8 +78,7 @@ public class Batalha {
 	}
 
 	public boolean temVencedor() {
-		// TODO implementar a lógica
-		return false;
+		return this.primeiroAtacante.getVida() <= 0 || this.segundoAtacante.getVida() <= 0;
 	}
 
 	public Personagem getPrimeiroAtacante() {
@@ -91,4 +89,15 @@ public class Batalha {
 		return segundoAtacante;
 	}
 
+	String getTipoDePersonagem(Personagem p) {
+		return p instanceof Guerreiro ? "Guerreiro" : "Assassino";
+	}
+
+	public void apresentarVencedor() {
+		if (this.primeiroAtacante.getVida() > 0) {
+			System.out.println("O " + this.getTipoDePersonagem(primeiroAtacante) + " foi o vencedor desta batalha");
+		} else {
+			System.out.println("O " + this.getTipoDePersonagem(segundoAtacante) + " foi o vencedor desta batalha");
+		}
+	}
 }
