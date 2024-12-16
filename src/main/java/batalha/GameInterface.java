@@ -23,7 +23,7 @@ public class GameInterface {
         while (true) {
             switch (choice) {
                 case 1:
-                    promptChoosePersonagem(choice, scanner);
+                    choice =promptChoosePersonagem(choice, scanner);
                     p2 = mainMenu(scanner, choice);
                     break;
                 case 2:
@@ -172,6 +172,8 @@ public class GameInterface {
 			} catch (Exception e) {
 				System.out.println("Opção inválida recebida!");
                 System.out.println("Escolha uma opção válida:");
+		        System.out.println("1 - Definir Pontos");
+		        System.out.println("2 - Gerar pelo sistema");
 			}
 		}
 	}
@@ -246,6 +248,8 @@ public class GameInterface {
 			} catch (Exception e) {
 				System.out.println("Opção inválida recebida!");
                 System.out.println("Escolha uma opção válida:");
+                System.out.println("1 - Definir Pontos");
+                System.out.println("2 - Gerar pelo sistema");
 			}
 		}
 	}
@@ -385,6 +389,7 @@ public class GameInterface {
                 }
 
 				promptUseSameCharacters(scanner);
+				break;
 			} catch (Exception e) {
 				System.out.println("Opção inválida recebida!");
                 System.out.println("Escolha uma opção válida:");
@@ -409,6 +414,9 @@ public class GameInterface {
 
                 if(choice == 2) {
                     gameStart(scanner);
+                }
+                else if(choice == 1) {
+                    break;
                 }
 			} catch (Exception e) {
 				System.out.println("Opção inválida recebida!");
