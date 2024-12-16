@@ -66,7 +66,7 @@ public abstract class Personagem {
 		return danoInfringido.intValue();
 	}
 
-	private void receberDano(int danoInfringido) {
+	public void receberDano(int danoInfringido) {
 	    //REVISEM
 		//REVISADO
 		if(danoInfringido < 1) {
