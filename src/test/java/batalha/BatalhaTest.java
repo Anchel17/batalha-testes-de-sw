@@ -224,7 +224,7 @@ class BatalhaTest {
     @Test
     void testApresentarVencedor() {
         Personagem personagem1 = new Guerreiro(7, 3, 3, 7);
-		Personagem personagem2 = new Assassino(6, 5, 6, 3);
+		Personagem personagem2 = new Guerreiro(6, 4, 4, 6);
         Batalha batalha = new Batalha(personagem1, personagem2);
 
         // Simula dano letal no segundo atacante
@@ -234,5 +234,59 @@ class BatalhaTest {
 
         assertTrue(batalha.temVencedor());
         assertEquals(personagem1, batalha.getSegundoAtacante());
+    }
+    
+    @Test
+    void testApresentarVencedorSegundoAtacante() {
+        Personagem personagem1 = new Assassino(7, 3, 7, 3);
+        Personagem personagem2 = new Assassino(6, 4, 6, 4);
+        Batalha batalha = new Batalha(personagem1, personagem2);
+
+        // Simula dano letal no segundo atacante
+        personagem1.setVida(0);
+
+        batalha.apresentarVencedor();
+
+        assertTrue(batalha.temVencedor());
+        assertEquals(personagem2, batalha.getSegundoAtacante());
+    }
+    
+    @Test
+    void testCalcularChanceDeEvasao() {
+        Personagem personagem1 = new Assassino(7, 3, 7,3);
+        Personagem personagem2 = new Assassino(6, 4, 6, 4);
+        Batalha batalha = new Batalha(personagem1, personagem2);
+        
+        int chanceEvasao = batalha.calcularChanceEvasao(personagem1, personagem2);
+        // Criando condição pra que o valor aleatório seja maior que o valor retornado pela chance de evasão
+        int valorAleatorio = 3;
+
+        boolean evasaoOcorrida = valorAleatorio <= chanceEvasao;
+
+        assertFalse(evasaoOcorrida);
+    }
+    
+    @Test
+    void testRealizarPrimeiroAtaque() {
+        Personagem personagem1 = new Assassino(5, 5, 5, 5);
+        Personagem personagem2 = new Assassino(5, 5, 5, 5);
+        Batalha batalha = new Batalha(personagem1, personagem2, 0);
+        int vidaDefensorAntesDoAtaque = personagem2.getVida();
+        
+        batalha.realizarPrimeiroAtaque();
+        
+        assertTrue(personagem2.getVida() <= vidaDefensorAntesDoAtaque);
+    }
+    
+    @Test
+    void testRealizarSegundoAtaque() {
+        Personagem personagem1 = new Assassino(5, 5, 5, 5);
+        Personagem personagem2 = new Assassino(5, 5, 5, 5);
+        Batalha batalha = new Batalha(personagem1, personagem2, 1);
+        int vidaDefensorAntesDoAtaque = personagem1.getVida();
+        
+        batalha.realizarSegundoAtaque();
+        
+        assertTrue(personagem1.getVida() <= vidaDefensorAntesDoAtaque);
     }
 }
