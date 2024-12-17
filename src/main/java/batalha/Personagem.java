@@ -56,6 +56,7 @@ public abstract class Personagem {
 
 	int calcularDanoInfringindo(int danoBase, int defesa, boolean eGolpeCritico) {
 	    //REVISEM ISSO AQUI COM BASE NO DOCUMENTO
+		//REVISADO
 	    Long danoInfringido = (long) (danoBase + this.getAtaque() - defesa);
 	    
 	    if(eGolpeCritico) {
@@ -65,8 +66,14 @@ public abstract class Personagem {
 		return danoInfringido.intValue();
 	}
 
-	private void receberDano(int danoInfringido) {
+	public void receberDano(int danoInfringido) {
 	    //REVISEM
+		//REVISADO
+		if(danoInfringido < 1) {
+			this.setVida(this.getVida() - 1);
+			return;
+		}
+
 		this.setVida(this.getVida() - danoInfringido);
 	}
 
@@ -75,7 +82,9 @@ public abstract class Personagem {
 		//      Considere que o modificadorAtaque é um valor entre [0.8 e 1.2[
 		// 		Ele serve de base pra calcular o danoBase
 		//		Recebe como parâmetro para isolar melhor o método, facilitando seu teste
-	    Long danoBase =  Math.round(this.getAtaque() * (1 + modificadorAtaque));
+
+		//REVISADO
+	    Long danoBase =  Math.round(this.getAtaque() * modificadorAtaque);
 	    
 		return danoBase.intValue();
 	}
