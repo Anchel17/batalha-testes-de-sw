@@ -41,7 +41,7 @@ public class GameInterface {
             }
         }
 
-        return new ArrayList<>(Arrays.asList(p1, p2));
+        return new ArrayList<Personagem>(Arrays.asList(p1, p2));
     }
 
     private Personagem mainMenu(Scanner scanner, int choice) {        
