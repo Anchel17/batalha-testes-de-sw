@@ -31,7 +31,7 @@ Para gerar um relatório de testes via linha de comando, digite: mvn clean test 
 - Junit Jupiter params versão 5.11.0-M2
 -- Disponível em: [Maven Repository
 ](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params/5.11.0-M2)
-- Jacoco Maven Plugin versão 0.8.7
+- Jacoco Maven Plugin versão 0.8.8
 -- Disponível em: [Maven Repository
 ](https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin/0.8.12)
 
